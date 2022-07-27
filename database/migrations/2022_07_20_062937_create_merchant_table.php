@@ -17,7 +17,7 @@ class CreateMerchantTable extends Migration
             $table->id();
             $table->string("name", 100);
             $table->text("description");
-            $table->boolean("isOpen");
+            $table->boolean("is_open");
             $table->timestamps();
         });
     }
