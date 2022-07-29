@@ -15,7 +15,7 @@ class CreateUserTable extends Migration
     {
         Schema::create('user', function (Blueprint $table) {
             $table->id();
-            $table->integer("id_merchant")->nullable();
+            $table->integer("merchant_id")->nullable();
             $table->string("username", 100);
             $table->string("email", 100);
             $table->string("password", 255);

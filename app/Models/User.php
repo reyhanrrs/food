@@ -11,4 +11,9 @@ class User extends Model
     use HasFactory;
 
     protected $table = 'user';
+
+    public function merchant()
+    {
+        return $this->belongsTo(Merchant::class);
+    }
 }

@@ -14,9 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        foreach (User::all() as $flight) {
-            echo $flight;
-        }
+        echo User::find(3)->merchant;
     }
 
     /**
