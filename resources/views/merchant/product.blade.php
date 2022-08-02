@@ -1,7 +1,7 @@
 @extends('layouts.template')
 
 @section('title')
-    Home
+    Manage Product
 @endsection
 
 @section('content')
