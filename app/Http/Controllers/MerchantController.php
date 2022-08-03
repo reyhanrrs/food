@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreMerchantRequest;
-use App\Http\Requests\UpdateMerchantRequest;
+// use App\Http\Requests\StoreMerchantRequest;
+// use App\Http\Requests\UpdateMerchantRequest;
 use App\Models\Merchant;
+use App\Models\User;
+use Illuminate\Http\Request;
 
 class MerchantController extends Controller
 {
@@ -25,7 +27,7 @@ class MerchantController extends Controller
      */
     public function create()
     {
-        //
+        return view('join-merchant');
     }
 
     /**
@@ -34,9 +36,19 @@ class MerchantController extends Controller
      * @param  \App\Http\Requests\StoreMerchantRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMerchantRequest $request)
+    public function store(Request $request)
     {
-        //
+        $merchant = new Merchant();
+
+        $merchant->name = $request->name;
+        $merchant->description = $request->description;
+        $merchant->is_open = 1;
+        $merchant->save();
+        $merchant_id = $merchant->id;
+
+        User::where("id", 6)->update(['merchant_id' => $merchant_id]);
+
+        return redirect('');
     }
 
     /**
@@ -68,7 +80,7 @@ class MerchantController extends Controller
      * @param  \App\Models\Merchant  $merchant
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateMerchantRequest $request, Merchant $merchant)
+    public function update(Request $request, Merchant $merchant)
     {
         //
     }

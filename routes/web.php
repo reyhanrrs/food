@@ -4,7 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
-
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MerchantController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -29,4 +30,9 @@ Route::get('/', [HomeController::class, 'index'])->name("home");
 Route::get('/product/{id}', [HomeController::class, 'detail'])->name("detail");
 Route::get('/user', [UserController::class, 'index'])->name("user");
 
-Route::get('/product', [ProductController::class, 'index']);
+Route::get('/join-merchants', [MerchantController::class, 'create'])->name("join-merchant");
+Route::post('/merchant', [MerchantController::class, 'store'])->name("merchant");
+
+Route::get('/product', [ProductController::class, 'index'])->name("product");
+Route::post('/product', [ProductController::class, 'store'])->name("product");
+Route::get('/add-product', [ProductController::class, 'create']);

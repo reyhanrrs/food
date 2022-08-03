@@ -47,6 +47,10 @@ class UserController extends Controller
         return redirect('login');
     }
 
+    public function joinedMerchant()
+    {
+        return true;
+    }
     /**
      * Display the specified resource.
      *

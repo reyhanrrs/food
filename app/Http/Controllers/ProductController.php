@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreProductRequest;
-use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
+use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
@@ -15,7 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        return view('merchant.product', [
+            "products" => Product::all()
+        ]);
     }
 
     /**
@@ -25,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('merchant.tambah-product');
     }
 
     /**
@@ -34,9 +35,28 @@ class ProductController extends Controller
      * @param  \App\Http\Requests\StoreProductRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
+    public function store(Request $request)
     {
-        //
+
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $image->move(public_path('/img'), $image_name);
+        }
+
+        $product = new Product;
+
+        //session required
+        $product->merchant_id = 1;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->total = $request->total;
+        $product->price = $request->price;
+        $product->image = $image_name ?? 'noimage.jpg';
+
+        $product->save();
+
+        return redirect('product');
     }
 
     /**
@@ -68,7 +88,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateProductRequest $request, Product $product)
+    public function update(Request $request, Product $product)
     {
         //
     }
