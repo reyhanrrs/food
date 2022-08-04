@@ -32,10 +32,18 @@
                         </div>
                         <nav class="col-md-6 col-12 tm-nav">
                             <ul class="tm-nav-ul">
-                                <li class="tm-nav-li"><a href="/" class="tm-nav-link active">Home</a></li>
-                                <li class="tm-nav-li"><a href="/about" class="tm-nav-link">About</a></li>
-                                <li class="tm-nav-li"><a href="/contact" class="tm-nav-link">Contact</a></li>
-                                <li class="tm-nav-li"><a href="/login" class="tm-nav-link">Log Out</a></li>
+                                <li class="tm-nav-li"><a style="text-decoration: none" href="/" class="tm-nav-link active">Home</a></li>
+                                <li class="tm-nav-li"><a style="text-decoration: none" href="/contact" class="tm-nav-link">Contact</a></li>
+                                @auth
+                                    @if(auth()->user()->merchant_id != null)
+                                        <li class="tm-nav-li"><a style="text-decoration: none" href="/product" class="tm-nav-link">Merchant</a></li>
+                                    @endif
+                                    <li class="tm-nav-li"><a style="text-decoration: none" href="/logout" class="tm-nav-link">Log Out</a></li>
+                                @endauth
+                                
+                                @guest
+                                    <li class="tm-nav-li"><a style="text-decoration: none" href="/login" class="tm-nav-link">Log In</a></li>
+                                @endguest
                             </ul>
                         </nav>
                     </div>

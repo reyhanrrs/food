@@ -11,7 +11,7 @@
             <div class="mb-3 row d-flex">
             <label for="exampleFormControlInput1" class="form-label">Username</label>
                 <div class="col-sm-10">
-                    <input type="username" name="username" class="form-control" placeholder="username">
+                    <input type="text" name="username" class="form-control" placeholder="username">
                 </div>
             </div>
             <div class="mb-3 row d-flex">

@@ -4,37 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public function index(Request $request)
     {
+        $user = Auth::user();
+        $merchant_id = $user->merchant_id;
+
         return view('merchant.product', [
+            "products" => Product::where('merchant_id', $merchant_id)->get()
+        ]);
+    }
+
+    public function all()
+    {
+        return view('home', [
             "products" => Product::all()
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('merchant.tambah-product');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreProductRequest  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
 
@@ -46,8 +41,7 @@ class ProductController extends Controller
 
         $product = new Product;
 
-        //session required
-        $product->merchant_id = 1;
+        $product->merchant_id = auth()->user()->merchant_id;;
         $product->name = $request->name;
         $product->description = $request->description;
         $product->total = $request->total;
@@ -59,46 +53,43 @@ class ProductController extends Controller
         return redirect('product');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Product $product)
+    public function show($product)
     {
-        //
+        return view("product-detail", [
+            "product" => Product::where('id', $product)->first()
+        ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Product $product)
+    public function edit($idProduct)
     {
-        //
+        return view('merchant.edit-product', [
+            "product" => Product::where("id", $idProduct)->first()
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateProductRequest  $request
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
-        //
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            unlink("img/" . $request->old_image);
+            $image = $request->file('image');
+            $image_name = $image->getClientOriginalName();
+            $image->move(public_path('/img'), $image_name);
+        } else {
+            $image_name = $request->old_image;
+        }
+
+        $product = Product::find($request->id);
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->total = $request->total;
+        $product->price = $request->price;
+        $product->image = $image_name ?? 'noimage.jpg';
+
+        $product->save();
+
+        return redirect('product');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Product  $product
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Product $product)
     {
         //

@@ -21,7 +21,7 @@
 							<img src={{asset("img/$product->image")}}  alt="Image" class="img-fluid tm-gallery-img" />
 							<figcaption>
 								<h4 class="tm-gallery-title">
-									<a href={{ url("/product/$product->id"); }}>
+									<a href={{ url("/edit-product/$product->id"); }}>
 										{{$product->name}}
 									</a>
 								</h4>

@@ -7,6 +7,15 @@
 @section('content')
     <main>
         <div class="card mx-2 my-5">
+          @auth
+              @if (auth()->user()->merchant_id == $product->merchant_id)
+              <button type="submit" class="btn btn-warning">
+                <a href="{{ url('edit-product/'.$product->id) }}" class="text-decoration-none text-white">
+                  Edit this product
+                </a>
+              </button>
+              @endif
+          @endauth
             <div class="card-body d-flex">
                 <figure>
                     <img src={{asset("img/$product->image")}} alt="" style="width:40vw">
@@ -28,13 +37,12 @@
                           </div>
                           <div class="col-md-8">
                             <div class="card-body">
-                              <h5 class="card-title">Card title</h5>
-                              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                              <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                              <h5 class="card-title">{{$product->merchant->name}}</h5>
+                              <p class="card-text">{{$product->merchant->description}}</p>
                             </div>
                           </div>
                         </div>
-                      </div>
+                    </div>
                 </div>
             </div>
         </div>

@@ -17,22 +17,30 @@ use App\Http\Controllers\MerchantController;
 |
 */
 
+
+
+Route::get('/login', [LoginController::class, 'index'])->name("login");
+Route::post('/login', [LoginController::class, 'login'])->name("login");
+Route::get('/logout', [LoginController::class, 'logout'])->name("logout");
+
+Route::get('/register',  [UserController::class, 'index'])->name("register");
+Route::post('/register', [UserController::class, 'store'])->name("register");
+
+Route::get('/', [ProductController::class, 'all'])->name("home");
+Route::get('/detail-product/{id}', [ProductController::class, 'show'])->name("product");
+
 Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/login', [LoginController::class, 'index'])->name("login");
-Route::post('/login', [LoginController::class, 'login'])->name("login");
-Route::get('/register',  [UserController::class, 'index'])->name("register");
-Route::post('/register', [UserController::class, 'store'])->name("register");
+Route::middleware('auth')->group(function () {
+    Route::get('/join-merchants', [MerchantController::class, 'create'])->name("join-merchant");
+    Route::post('/merchant', [MerchantController::class, 'store'])->name("merchant");
 
-Route::get('/', [HomeController::class, 'index'])->name("home");
-Route::get('/product/{id}', [HomeController::class, 'detail'])->name("detail");
-Route::get('/user', [UserController::class, 'index'])->name("user");
-
-Route::get('/join-merchants', [MerchantController::class, 'create'])->name("join-merchant");
-Route::post('/merchant', [MerchantController::class, 'store'])->name("merchant");
-
-Route::get('/product', [ProductController::class, 'index'])->name("product");
-Route::post('/product', [ProductController::class, 'store'])->name("product");
-Route::get('/add-product', [ProductController::class, 'create']);
+    Route::get('/product', [ProductController::class, 'index'])->name("merchant-product");
+    Route::post('/product', [ProductController::class, 'store'])->name("merchant-product");
+    Route::get('/add-product', [ProductController::class, 'create']);
+    //authorize this
+    Route::put('/edit-product', [ProductController::class, 'update']);
+    Route::get('/edit-product/{id}', [ProductController::class, 'edit']);
+});
