@@ -27,7 +27,7 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('merchant.tambah-product');
+        return view('merchant.add-product');
     }
 
     public function store(Request $request)

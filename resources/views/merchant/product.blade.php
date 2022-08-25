@@ -34,7 +34,7 @@
 				
 				
 				<article class="fs-1 border border-primary ol-lg-3 col-md-4 col-sm-6 col-12 tm-gallery-item">
-					<a href="/tambah-product" class="text-center d-flex justify-content-center align-items-center" style="width: 100%; height:100%; text-decoration: none">
+					<a href="/add-product" class="text-center d-flex justify-content-center align-items-center" style="width: 100%; height:100%; text-decoration: none">
 					+
 					</a>
 				</article>

@@ -27,7 +27,7 @@ Route::get('/register',  [UserController::class, 'index'])->name("register");
 Route::post('/register', [UserController::class, 'store'])->name("register");
 
 Route::get('/', [ProductController::class, 'all'])->name("home");
-Route::get('/detail-product/{id}', [ProductController::class, 'show'])->name("product");
+Route::get('/detail-product/{id}', [ProductController::class, 'show']);
 
 Route::get('/contact', function () {
     return view('contact');
