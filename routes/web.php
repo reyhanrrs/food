@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\MerchantController;
+use App\Http\Controllers\ChatController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,4 +44,8 @@ Route::middleware('auth')->group(function () {
     //authorize this
     Route::put('/edit-product', [ProductController::class, 'update']);
     Route::get('/edit-product/{id}', [ProductController::class, 'edit']);
+    Route::delete('/product/{id}', [ProductController::class, 'destroy']);
+
+    Route::get('/chat/{id}', [ChatController::class, 'show']);
+    Route::post('/chat/{id}', [ChatController::class, 'store']);
 });

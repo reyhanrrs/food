@@ -396,9 +396,15 @@ p, address {
 
 .tm-gallery-title {
   font-size: 1.3rem;
-  font-weight: 400;
-  color: #1A6692;
+  font-weight: 600;
+  /* color: #1A6692; */
+  color: #157234;
   margin-bottom: 15px;
+}
+
+.tm-gallery-title a{
+ text-decoration: none;
+ color: inherit;
 }
 
 .tm-gallery-description {

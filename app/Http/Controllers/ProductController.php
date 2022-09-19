@@ -90,8 +90,8 @@ class ProductController extends Controller
         return redirect('product');
     }
 
-    public function destroy(Product $product)
+    public function destroy(Product $product, $id)
     {
-        //
+        $product->destroy($id);
     }
 }

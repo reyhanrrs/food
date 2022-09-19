@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-	<main class="d-flex justify-content-center">
+	<main  style="width:50%" class="m-auto">
         <form class="mt-5" action="{{ route('register')}}" method="POST">
             @csrf
             <div class="mb-3">
@@ -34,6 +34,11 @@
             </div>
             <button type="submit" class="btn btn-primary">Sign Up</button>
         </form>
+        <div class="mt-5">
+            <p style="display: inline-block">Already have an account? </p>
+            <a href="/login" style="text-decoration: underline">sign in</a>
+           
+        </div>
     </main>
 @endsection
 

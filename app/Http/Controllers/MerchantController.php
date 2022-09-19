@@ -26,6 +26,7 @@ class MerchantController extends Controller
 
         $merchant->name = $request->name;
         $merchant->description = $request->description;
+        $merchant->address = $request->address;
         $merchant->is_open = 1;
         $merchant->save();
         $merchant_id = $merchant->id;

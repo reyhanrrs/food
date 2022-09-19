@@ -19,39 +19,7 @@
     <div class="container">
         <!-- Top box -->
         <!-- Logo & Site Name -->
-        <div class="placeholder">
-            <div class="parallax-window" data-parallax="scroll" data-image-src="{{asset('img/banner/home-banner.png')}}">
-                <div class="tm-header">
-                    <div class="row tm-header-inner">
-                        <div class="col-md-6 col-12">
-                            {{-- <img src="{{asset('templates/img/simple-house-logo.png')}}" alt="Logo" class="tm-site-logo" /> --}}
-                            {{-- <div class="tm-site-text-box">
-                                <h1 class="tm-site-title">Simple House</h1>
-                                <h6 class="tm-site-description">new restaurant template</h6>
-                            </div> --}}
-                        </div>
-                        <nav class="col-md-6 col-12 tm-nav">
-                            <ul class="tm-nav-ul">
-                                <li class="tm-nav-li"><a style="text-decoration: none" href="/" class="tm-nav-link">Home</a></li>
-                                <li class="tm-nav-li"><a style="text-decoration: none" href="/contact" class="tm-nav-link">Contact</a></li>
-                                @auth
-                                    @if(auth()->user()->merchant_id != null)
-                                        <li class="tm-nav-li"><a style="text-decoration: none" href="/product" class="tm-nav-link">Merchant</a></li>
-                                    @else
-                                    <li class="tm-nav-li"><a style="text-decoration: none" href="/join-merchants" class="tm-nav-link">Join Merchant</a></li>
-                                    @endif
-                                    <li class="tm-nav-li"><a style="text-decoration: none" href="/logout" class="tm-nav-link">Log Out</a></li>
-                                @endauth
-                                
-                                @guest
-                                    <li class="tm-nav-li"><a style="text-decoration: none" href="/login" class="tm-nav-link">Log In</a></li>
-                                @endguest
-                            </ul>
-                        </nav>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
         @yield('content')
 

@@ -7,7 +7,7 @@
 @section('content')
 	<main>
 		<header class="row tm-welcome-section">
-			<h2 class="col-12 text-center tm-section-title">Add Products</h2>
+			<h2 class="col-12 text-center tm-section-title">Edit Products</h2>
  		</header>
 
         <form class="mt-5 col-10 m-auto" action="{{ url('edit-product') }}" method="post" enctype="multipart/form-data">
@@ -48,7 +48,13 @@
                 </div>
             </div>
             <button type="submit" class="btn btn-primary mt-2 ml-3">Submit</button>
-        </form> 
+            <form action="/product/{{ $product->id }}" method="POST">
+                @csrf
+                @method('put')
+                <button type="submit" class="btn btn-danger mt-2 ml-3">
+                        Delete
+                </button>
+            </form>
 
         <script>
             function changeImage(){
