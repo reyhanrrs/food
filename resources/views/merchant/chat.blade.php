@@ -148,10 +148,7 @@
     </style>
     <main>  
         <h1 class="mb-5 text-center">Chat</h1>
-        <a href="/" class="mx-3">
-            Home
-        </a>
-        <a href="/detail-product/{{ $product_id }}">
+        <a href="/chats">
             << back
         </a>
         <div class="messaging">
@@ -159,21 +156,21 @@
                 <div class="mesgs">
                     <div class="msg_history">
                         @foreach ($chats as $chat)
-                            @if($chat->is_answer)
-                            <div class="incoming_msg">
+                            @if(!$chat->is_answer)
+                            <div class="incoming_msg mt-4">
                                 <div class="incoming_msg_img"> 
                                     <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> 
                                 </div>
                                 <div class="received_msg">
-                                    <p>{{$chat->merchant->name}}</p>
-                                    <div class="received_withd_msg">
+                                    <p>{{ $chat->user->username }}</p>
+                                    <div class="received_withd_msg">    
                                         <p>{{ $chat->message }}</p>
                                         <span class="time_date">{{ $chat->created_at }}</span>
                                     </div>
                                 </div>
                             </div>
                             @else
-                            <div class="outgoing_msg">
+                            <div class="outgoing_msg mt-3">
                                 <div class="sent_msg">
                                     <p>{{ $chat->message }}</p>
                                     <span class="time_date">{{ $chat->created_at }}</span> 
@@ -185,11 +182,11 @@
 
                     <div class="type_msg">
                         <div class="input_msg_write">
-                            <form action="/chat/{{ $product_id }}" method="POST" >
+                            <form action="/reply-chat/{{ $user_id }}/{{ $product_id }}" method="POST">
                                 @csrf
-                                <input type="text" id="message" name="message" class="write_msg" placeholder="Type a message" />
+                                <input type="text" id="message" name="message" class="write_msg" placeholder="Type a message" required/>
                                 <button class="msg_send_btn" type="submit">
-                                    <i class="fas fa-envelope tm-contact-icon" aria-hidden="true">Send</i>
+                                    <i class="fas fa-envelope tm-contact-icon m-auto text-white" aria-hidden="true">&#x2A65</i>
                                 </button>
                             </form>
                         </div>

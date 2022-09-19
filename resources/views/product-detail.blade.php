@@ -29,6 +29,12 @@
                         <p class="tm-gallery-description">Posting at: {{ $product->updated_at ?? $product->created_at }}</p>
                         <p class="tm-gallery-description">Remain: {{ $product->total }}</p>
                     </div>
+
+                    <a href="/chat/{{ $product->id }}">
+                      <button class="btn btn-info">
+                        Chat Seller
+                      </button>
+                    </a>
     
                     <div class="merchant-description card my-3" style="max-width: 540px;">
                         <div class="row g-0">

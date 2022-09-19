@@ -30,10 +30,10 @@
                                 <h6 class="tm-site-description">new restaurant template</h6>
                             </div> --}}
                         </div>
-                        <nav class="col-md-6 col-12 tm-nav">
+                        <nav class="col-md-12 col-12 tm-nav">
                             <ul class="tm-nav-ul">
                                 <li class="tm-nav-li"><a style="text-decoration: none" href="/" class="tm-nav-link">Home</a></li>
-                                <li class="tm-nav-li"><a style="text-decoration: none" href="/contact" class="tm-nav-link">Contact</a></li>
+                                <li class="tm-nav-li"><a style="text-decoration: none" href="/chats" class="tm-nav-link">Chat</a></li>
                                 @auth
                                     @if(auth()->user()->merchant_id != null)
                                         <li class="tm-nav-li"><a style="text-decoration: none" href="/product" class="tm-nav-link">Merchant</a></li>
@@ -46,6 +46,7 @@
                                 @guest
                                     <li class="tm-nav-li"><a style="text-decoration: none" href="/login" class="tm-nav-link">Log In</a></li>
                                 @endguest
+                                <li class="tm-nav-li"><a style="text-decoration: none" href="/contact" class="tm-nav-link">Contact</a></li>
                             </ul>
                         </nav>
                     </div>

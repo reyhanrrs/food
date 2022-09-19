@@ -16,6 +16,11 @@ class Chat extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function merchant()
+    {
+        return $this->belongsTo(Merchant::class);
+    }
+
     public function product()
     {
         return $this->belongsTo(Product::class);

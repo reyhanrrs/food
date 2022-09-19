@@ -46,6 +46,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit-product/{id}', [ProductController::class, 'edit']);
     Route::delete('/product/{id}', [ProductController::class, 'destroy']);
 
-    Route::get('/chat/{id}', [ChatController::class, 'show']);
-    Route::post('/chat/{id}', [ChatController::class, 'store']);
+    //for user chat
+    Route::get('/chat/{product_id}', [ChatController::class, 'show']);
+    Route::post('/chat/{product_id}', [ChatController::class, 'store']);
+
+    //for merchant chat
+    Route::get('/chats', [ChatController::class, 'messager']);
+    Route::get('/show-chat/{user_id}/{product_id}', [ChatController::class, 'showMerchant']);
+    Route::post('/reply-chat/{user_id}/{product_id}', [ChatController::class, 'reply']);
 });
